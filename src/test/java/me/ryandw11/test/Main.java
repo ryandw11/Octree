@@ -1,9 +1,10 @@
 package me.ryandw11.test;
 import me.ryandw11.octree.Octree;
+import me.ryandw11.octree.OutOfBoundsException;
 
 public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws OutOfBoundsException {
         Octree<String> tree = new Octree<>(0,0,0, 16, 16, 16);
 
         for(int x = 0; x < 16; x++){
@@ -13,6 +14,8 @@ public class Main {
                 }
             }
         }
+
+        tree.insert(155, 5, 5, "y");
 
 
     }

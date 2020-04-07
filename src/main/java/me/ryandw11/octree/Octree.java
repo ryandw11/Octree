@@ -19,10 +19,9 @@ public class Octree<T> {
         this.object = object;
     }
 
-    public Octree(int x1, int y1, int z1, int x2, int y2, int z2){
+    public Octree(int x1, int y1, int z1, int x2, int y2, int z2) throws OutOfBoundsException {
         if(x2 < x1 || y2 < y1 || z2 < z1){
-            System.out.println("Out of bounds");
-            return;
+            throw new OutOfBoundsException("The bounds are not properly set!");
         }
 
         point = null;
@@ -34,7 +33,7 @@ public class Octree<T> {
         }
     }
 
-    public void insert(int x, int y, int z, T object){
+    public void insert(int x, int y, int z, T object) throws OutOfBoundsException {
         if(find(x, y, z)){
             System.out.println("Point already exists in the tree.");
             return;
@@ -43,8 +42,7 @@ public class Octree<T> {
         if (x < topLeftFront.getX() || x > bottomRightBack.getX()
                 || y < topLeftFront.getY() || y > bottomRightBack.getY()
                 || z < topLeftFront.getZ() || z > bottomRightBack.getZ()){
-            System.out.println("Out of bounds! | Insert");
-            return;
+            throw new OutOfBoundsException("Insertion point is out of bounds! X: " + x + " Y: " + y + " Z: " + z + " Object Name: " + object.getClass().getName());
         }
 
         int midx = (topLeftFront.getX() + bottomRightBack.getX())/2;
