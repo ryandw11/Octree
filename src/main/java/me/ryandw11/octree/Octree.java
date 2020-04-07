@@ -43,7 +43,7 @@ public class Octree<T> {
         if (x < topLeftFront.getX() || x > bottomRightBack.getX()
                 || y < topLeftFront.getY() || y > bottomRightBack.getY()
                 || z < topLeftFront.getZ() || z > bottomRightBack.getZ()){
-            System.out.println("Out of bounds!");
+            System.out.println("Out of bounds! | Insert");
             return;
         }
 
