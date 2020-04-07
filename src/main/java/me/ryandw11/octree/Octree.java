@@ -6,7 +6,7 @@ public class Octree<T> {
 
     private OctPoint topLeftFront, bottomRightBack;
 
-    private Octree[] children = new Octree[8];
+    private Octree<T>[] children = new Octree[8];
 
     private T object;
 
@@ -30,7 +30,7 @@ public class Octree<T> {
         bottomRightBack = new OctPoint(x2, y2, z2);
 
         for (int i = 0; i <= 7; i++){
-            children[i] = new Octree<T>();
+            children[i] = new Octree<>();
         }
     }
 
@@ -42,13 +42,16 @@ public class Octree<T> {
 
         if (x < topLeftFront.getX() || x > bottomRightBack.getX()
                 || y < topLeftFront.getY() || y > bottomRightBack.getY()
-                || z < topLeftFront.getZ() || z > bottomRightBack.getZ()) return;
+                || z < topLeftFront.getZ() || z > bottomRightBack.getZ()){
+            System.out.println("Out of bounds!");
+            return;
+        }
 
         int midx = (topLeftFront.getX() + bottomRightBack.getX())/2;
         int midy = (topLeftFront.getY() + bottomRightBack.getY())/2;
         int midz = (topLeftFront.getZ() + bottomRightBack.getZ())/2;
 
-        int pos = -1;
+        int pos;
 
         if(x <= midx){
             if(y <= midy){
@@ -78,43 +81,42 @@ public class Octree<T> {
 
         if(children[pos].point == null){
             children[pos].insert(x, y, z, object);
-            return;
         }
         else if(children[pos].point.isNullified()){
-            children[pos] = new Octree<T>(x, y, z, object);
-            return;
+            children[pos] = new Octree<>(x, y, z, object);
         }
         else{
             int x_ = children[pos].point.getX();
             int y_ = children[pos].point.getY();
             int z_ = children[pos].point.getZ();
+            T object_ = children[pos].object;
             children[pos] = null;
             if(pos == OctLocations.TopLeftFront.getNumber()){
-                children[pos] = new Octree(topLeftFront.getX(), topLeftFront.getY(), topLeftFront.getZ(), midx, midy, midz);
+                children[pos] = new Octree<>(topLeftFront.getX(), topLeftFront.getY(), topLeftFront.getZ(), midx, midy, midz);
             }
             else if(pos == OctLocations.TopRightFront.getNumber()){
-                children[pos] = new Octree(midx + 1, topLeftFront.getY(), topLeftFront.getZ(), bottomRightBack.getX(), midy, midz);
+                children[pos] = new Octree<>(midx + 1, topLeftFront.getY(), topLeftFront.getZ(), bottomRightBack.getX(), midy, midz);
             }
             else if(pos == OctLocations.BottomRightFront.getNumber()){
-                children[pos] = new Octree(midx + 1, midy +1, topLeftFront.getZ(), bottomRightBack.getX(), bottomRightBack.getY(), midz);
+                children[pos] = new Octree<>(midx + 1, midy +1, topLeftFront.getZ(), bottomRightBack.getX(), bottomRightBack.getY(), midz);
             }
             else if(pos == OctLocations.BottomLeftFront.getNumber()){
-                children[pos] = new Octree(topLeftFront.getX(), midy +1, topLeftFront.getZ(), midx, bottomRightBack.getY(), midz);
+                children[pos] = new Octree<>(topLeftFront.getX(), midy +1, topLeftFront.getZ(), midx, bottomRightBack.getY(), midz);
             }
             else if(pos == OctLocations.TopLeftBottom.getNumber()){
-                children[pos] = new Octree(topLeftFront.getX(), topLeftFront.getY(), midz + 1, midx, midy, bottomRightBack.getZ());
+                children[pos] = new Octree<>(topLeftFront.getX(), topLeftFront.getY(), midz + 1, midx, midy, bottomRightBack.getZ());
             }
             else if(pos == OctLocations.TopRightBottom.getNumber()){
-                children[pos] = new Octree(midx +1, topLeftFront.getY(), midz +1, bottomRightBack.getX(), midy, bottomRightBack.getZ());
+                children[pos] = new Octree<>(midx +1, topLeftFront.getY(), midz +1, bottomRightBack.getX(), midy, bottomRightBack.getZ());
             }
             else if(pos == OctLocations.BottomRightBack.getNumber()){
-                children[pos] = new Octree(topLeftFront.getX(), midy + 1, midz +1, midx, bottomRightBack.getY(), bottomRightBack.getZ());
+                children[pos] = new Octree<>(topLeftFront.getX(), midy + 1, midz +1, midx, bottomRightBack.getY(), bottomRightBack.getZ());
             }
             else if(pos == OctLocations.BottomLeftBack.getNumber()){
-                children[pos] = new Octree(topLeftFront.getX(), midy +1, midz +1, midx, bottomRightBack.getY(), bottomRightBack.getZ());
+                children[pos] = new Octree<>(topLeftFront.getX(), midy +1, midz +1, midx, bottomRightBack.getY(), bottomRightBack.getZ());
             }
 
-            children[pos].insert(x_, y_, z_, object);
+            children[pos].insert(x_, y_, z_, object_);
             children[pos].insert(x, y, z, object);
         }
     }
@@ -127,7 +129,7 @@ public class Octree<T> {
         int midy = (topLeftFront.getY() + bottomRightBack.getY())/2;
         int midz = (topLeftFront.getZ() + bottomRightBack.getZ())/2;
 
-        int pos = -1;
+        int pos;
 
         if(x <= midx){
             if(y <= midy){
@@ -170,7 +172,7 @@ public class Octree<T> {
         int midy = (topLeftFront.getY() + bottomRightBack.getY())/2;
         int midz = (topLeftFront.getZ() + bottomRightBack.getZ())/2;
 
-        int pos = -1;
+        int pos;
 
         if(x <= midx){
             if(y <= midy){
@@ -199,11 +201,11 @@ public class Octree<T> {
         }
 
         if(children[pos].point == null)
-            return (T) children[pos].get(x, y, z);
+            return children[pos].get(x, y, z);
         if(children[pos].point.isNullified())
             return null;
         if(x == children[pos].point.getX() && y == children[pos].point.getY() && z == children[pos].point.getZ()){
-            return (T) children[pos].object;
+            return children[pos].object;
         }
 
         return null;
@@ -217,7 +219,7 @@ public class Octree<T> {
         int midy = (topLeftFront.getY() + bottomRightBack.getY())/2;
         int midz = (topLeftFront.getZ() + bottomRightBack.getZ())/2;
 
-        int pos = -1;
+        int pos;
 
         if(x <= midx){
             if(y <= midy){
@@ -250,7 +252,7 @@ public class Octree<T> {
         if(children[pos].point.isNullified())
             return false;
         if(x == children[pos].point.getX() && y == children[pos].point.getY() && z == children[pos].point.getZ()){
-            children[pos] = new Octree<T>();
+            children[pos] = new Octree<>();
         }
         return false;
     }
