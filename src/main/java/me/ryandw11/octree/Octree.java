@@ -110,7 +110,7 @@ public class Octree<T> {
                 children[pos] = new Octree<>(midx +1, topLeftFront.getY(), midz +1, bottomRightBack.getX(), midy, bottomRightBack.getZ());
             }
             else if(pos == OctLocations.BottomRightBack.getNumber()){
-                children[pos] = new Octree<>(topLeftFront.getX(), midy + 1, midz +1, midx, bottomRightBack.getY(), bottomRightBack.getZ());
+                children[pos] = new Octree<>(midx + 1, midy +1, midz +1, bottomRightBack.getX(), bottomRightBack.getY(), bottomRightBack.getZ());
             }
             else if(pos == OctLocations.BottomLeftBack.getNumber()){
                 children[pos] = new Octree<>(topLeftFront.getX(), midy +1, midz +1, midx, bottomRightBack.getY(), bottomRightBack.getZ());
