@@ -35,8 +35,7 @@ public class Octree<T> {
 
     public void insert(int x, int y, int z, T object) throws OutOfBoundsException {
         if(find(x, y, z)){
-            System.out.println("Point already exists in the tree.");
-            return;
+            throw new PointExistsException("Point already exists in the tree. X: " + x + " Y: " + y + " Z: " + z + " Object Name: " + object.getClass().getName());
         }
 
         if (x < topLeftFront.getX() || x > bottomRightBack.getX()
