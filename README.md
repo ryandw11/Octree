@@ -8,27 +8,27 @@ Step 1: Add the jitpack repository if you don't already have it.
 ```xml
 <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+        <id>Ryandw11</id>
+        <url>https://repo.thevideogamevillage.com/repository/maven-releases/</url>
     </repository>
 </repositories>
 ```
 Step 2: Add the dependency
 ```xml
 <dependency>
-    <groupId>com.github.ryandw11</groupId>
+    <groupId>me.ryandw11</groupId>
     <artifactId>Octree</artifactId>
-    <version>master-SNAPSHOT</version>
+    <version>1.0</version>
 </dependency>
 ```
 
 ## Using Gradle
 ```gradle
 repositories {
-    maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.thevideogamevillage.com/repository/maven-releases/' }
 }
 dependencies {
-    implementation 'com.github.ryandw11:Octree:master-SNAPSHOT'
+    implementation 'meb.ryandw11:Octree:1.0'
 }
 ```
 
