@@ -4,7 +4,7 @@
 Here is an octree system to use in Java. This system allows you to store object with the tree, and retreive them.
 
 ## Using Maven
-Step 1: Add the jitpack repository if you don't already have it.
+Step 1: Add my release repository.
 ```xml
 <repositories>
     <repository>
