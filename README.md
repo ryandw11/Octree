@@ -9,7 +9,7 @@ Step 1: Add my release repository.
 <repositories>
     <repository>
         <id>Ryandw11</id>
-        <url>https://repo.thevideogamevillage.com/repository/maven-releases/</url>
+        <url>https://repo.ryandw11.com/repository/maven-releases/</url>
     </repository>
 </repositories>
 ```
@@ -25,7 +25,7 @@ Step 2: Add the dependency
 ## Using Gradle
 ```gradle
 repositories {
-    maven { url 'https://repo.thevideogamevillage.com/repository/maven-releases/' }
+    maven { url 'https://repo.ryandw11.com/repository/maven-releases/' }
 }
 dependencies {
     implementation 'meb.ryandw11:Octree:1.0'
