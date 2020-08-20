@@ -28,7 +28,7 @@ repositories {
     maven { url 'https://repo.ryandw11.com/repository/maven-releases/' }
 }
 dependencies {
-    implementation 'meb.ryandw11:Octree:1.0'
+    implementation 'me.ryandw11:Octree:1.0'
 }
 ```
 
