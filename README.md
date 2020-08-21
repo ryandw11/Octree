@@ -1,5 +1,5 @@
 # Octree
-[![Maven Central](https://img.shields.io/maven-central/v/me.ryandw11/Octree.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22me.ryandw11%22%20AND%20a:%22Octree%22)
+![Maven Releases](https://www.ryandw11.com/api/repo-badge/maven-releases/me.ryandw11/Octree) ![Maven Releases](https://www.ryandw11.com/api/repo-badge-snapshot/maven-snapshots/me.ryandw11/Octree)
 
 Here is an octree system to use in Java. This system allows you to store object with the tree, and retreive them.
 
